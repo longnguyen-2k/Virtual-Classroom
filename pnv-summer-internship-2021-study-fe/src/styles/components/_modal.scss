@@ -1,0 +1,17 @@
+.buttonGroup{
+    display: flex;
+}
+.buttonClass{
+    margin-right: 1rem;
+}
+.close{
+    font-size: 2rem !important;
+}
+.buttonAction{
+    font-size: large !important;
+    border: none !important;
+    padding: 0.25rem 1.5rem !important;
+    font-weight: 500 !important;
+    color: white !important;
+    white-space: nowrap !important;
+}

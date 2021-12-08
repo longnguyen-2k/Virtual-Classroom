@@ -1,0 +1,19 @@
+.menuCard{
+    text-align: right;
+    background-color: none;
+  }
+  .button-menuCard{
+    border: none !important;
+    background: none !important;
+  }
+  .button-menuCard:focus{
+    background: #333 50% !important;
+    box-shadow: none !important;
+  
+  }
+  .dropdown-item:hover{
+   background-color: rgb(112, 111, 111) !important;
+  }
+  .mr-3{
+    max-width: 50px;
+  }

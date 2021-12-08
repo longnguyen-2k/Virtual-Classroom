@@ -1,0 +1,45 @@
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - init
+  - deploy_qa
+  - test_qa
+  - deploy_prod
+
+init:
+  stage: init
+  image: node:12.16.1
+  script:
+    - npm install
+
+deploy_qa:
+  image: node:12.16.1
+  stage: deploy_qa
+  script:
+    - git push https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/julia-qa.git HEAD:master
+    - echo "Deployed to qa server"
+  environment:  
+    name: qa
+    url: https://julia-qa.herokuapp.com/
+  only:
+    - master
+
+test_qa:
+  stage: test_qa
+  image: trion/ng-cli-e2e
+  script:
+    - ENV=qa npm run wdioTest
+
+deploy_production:
+  image: node:12.16.1
+  stage: deploy_prod
+  script:
+    - git push https://$HEROKU_USER:$HEROKU_API_KEY@git.heroku.com/julia-test-prod.git HEAD:master
+    - echo "Deployed to production server"
+  environment:  
+    name: production
+    url: https://julia-test-prod.herokuapp.com/
+  only:
+    - master
